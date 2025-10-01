@@ -18,7 +18,7 @@ const Calculator = ({ open, onOpenChange }: CalculatorProps) => {
   const [lighting, setLighting] = useState("");
   const [email, setEmail] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!email || !roomSize || !lighting) {
@@ -26,20 +26,31 @@ const Calculator = ({ open, onOpenChange }: CalculatorProps) => {
       return;
     }
 
-    // TODO: Send email notification to spanndeckenking@gmail.com
-    // This requires a backend service (Lovable Cloud with Edge Functions)
-    const offerData = { roomSize, lighting, email };
-    console.log("Calculator submission:", offerData);
-    console.log("Email notification should be sent to: spanndeckenking@gmail.com");
+    try {
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-offer`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ roomSize, lighting, email }),
+      });
 
-    toast.success("Vielen Dank! Ihr Angebot wird berechnet und an spanndeckenking@gmail.com gesendet.");
-    
-    // Reset form
-    setStep(1);
-    setRoomSize("");
-    setLighting("");
-    setEmail("");
-    onOpenChange(false);
+      if (!response.ok) {
+        throw new Error("Fehler beim Senden der Anfrage");
+      }
+
+      toast.success("Vielen Dank! Ihr Angebot wird berechnet und Ihnen zugesendet.");
+      
+      // Reset form
+      setStep(1);
+      setRoomSize("");
+      setLighting("");
+      setEmail("");
+      onOpenChange(false);
+    } catch (error) {
+      console.error("Error sending offer request:", error);
+      toast.error("Fehler beim Senden. Bitte versuchen Sie es später erneut.");
+    }
   };
 
   const canProceedStep1 = roomSize !== "";

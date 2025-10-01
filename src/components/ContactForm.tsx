@@ -20,7 +20,7 @@ const ContactForm = ({ open, onOpenChange }: ContactFormProps) => {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!formData.name || !formData.email || !formData.message) {
@@ -28,15 +28,26 @@ const ContactForm = ({ open, onOpenChange }: ContactFormProps) => {
       return;
     }
 
-    // TODO: Send email notification to spanndeckenking@gmail.com
-    // This requires a backend service (Lovable Cloud with Edge Functions)
-    console.log("Contact form submission:", formData);
-    console.log("Email notification should be sent to: spanndeckenking@gmail.com");
+    try {
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    toast.success("Vielen Dank! Ihre Anfrage wurde an spanndeckenking@gmail.com gesendet.");
-    
-    setFormData({ name: "", email: "", phone: "", message: "" });
-    onOpenChange(false);
+      if (!response.ok) {
+        throw new Error("Fehler beim Senden der Nachricht");
+      }
+
+      toast.success("Vielen Dank! Ihre Anfrage wurde gesendet.");
+      setFormData({ name: "", email: "", phone: "", message: "" });
+      onOpenChange(false);
+    } catch (error) {
+      console.error("Error sending contact form:", error);
+      toast.error("Fehler beim Senden. Bitte versuchen Sie es später erneut.");
+    }
   };
 
   return (
