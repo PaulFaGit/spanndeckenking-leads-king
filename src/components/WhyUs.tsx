@@ -40,7 +40,7 @@ const WhyUs = () => {
     <section id="why-us" className="py-20 md:py-32 bg-gradient-to-b from-background to-muted/20">
       <div className="container px-4">
         <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in">
-          <h2 className="mb-4 gradient-text">Warum Spanndeckenking?</h2>
+          <h2 className="mb-6 gradient-text">Warum Spanndeckenking?</h2>
           <p className="text-xl text-muted-foreground">
             Vertrauen Sie auf Qualität, Erfahrung und erstklassigen Service
           </p>

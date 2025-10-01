@@ -15,7 +15,7 @@ const faqs = [
   {
     question: "Wie lange dauert die Montage?",
     answer:
-      "In den meisten Fällen ist die Montage einer Spanndecke in 1-2 Tagen abgeschlossen. Die genaue Dauer hängt von der Raumgröße und Komplexität des Projekts ab. Der große Vorteil: Die Montage ist staubfrei und sauber.",
+      "Meist nur wenige Stunden. Bei großen Decken dauert es maximal 1-2 Tage. Der große Vorteil: Die Montage ist staubfrei und sauber.",
   },
   {
     question: "Sind Spanndecken für alle Räume geeignet?",

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import logo from "@/assets/logo.png";
 
 interface HeaderProps {
   onCalculatorOpen: () => void;
@@ -48,9 +49,9 @@ const Header = ({ onCalculatorOpen }: HeaderProps) => {
           {/* Logo */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="text-2xl font-bold gradient-text hover:opacity-80 transition-opacity"
+            className="hover:opacity-80 transition-opacity"
           >
-            Spanndeckenking
+            <img src={logo} alt="Spanndeckenking" className="h-12 w-auto" />
           </button>
 
           {/* Desktop Navigation */}
