@@ -26,17 +26,26 @@ const Calculator = ({ open, onOpenChange }: CalculatorProps) => {
       return;
     }
 
+    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+    const offerData = { roomSize, lighting, email };
+    console.log("Sending offer request to:", `${supabaseUrl}/functions/v1/send-offer`);
+    console.log("Offer data:", offerData);
+
     try {
-      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-offer`, {
+      const response = await fetch(`${supabaseUrl}/functions/v1/send-offer`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ roomSize, lighting, email }),
+        body: JSON.stringify(offerData),
       });
 
+      console.log("Response status:", response.status);
+      const responseData = await response.text();
+      console.log("Response data:", responseData);
+
       if (!response.ok) {
-        throw new Error("Fehler beim Senden der Anfrage");
+        throw new Error(`Fehler beim Senden der Anfrage: ${responseData}`);
       }
 
       toast.success("Vielen Dank! Ihr Angebot wird berechnet und Ihnen zugesendet.");

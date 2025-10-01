@@ -28,8 +28,12 @@ const ContactForm = ({ open, onOpenChange }: ContactFormProps) => {
       return;
     }
 
+    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+    console.log("Sending contact form to:", `${supabaseUrl}/functions/v1/send-contact`);
+    console.log("Form data:", formData);
+
     try {
-      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-contact`, {
+      const response = await fetch(`${supabaseUrl}/functions/v1/send-contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -37,8 +41,12 @@ const ContactForm = ({ open, onOpenChange }: ContactFormProps) => {
         body: JSON.stringify(formData),
       });
 
+      console.log("Response status:", response.status);
+      const responseData = await response.text();
+      console.log("Response data:", responseData);
+
       if (!response.ok) {
-        throw new Error("Fehler beim Senden der Nachricht");
+        throw new Error(`Fehler beim Senden der Nachricht: ${responseData}`);
       }
 
       toast.success("Vielen Dank! Ihre Anfrage wurde gesendet.");
