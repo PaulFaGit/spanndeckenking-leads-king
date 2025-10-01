@@ -15,7 +15,7 @@ const Contact = () => {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!formData.name || !formData.email || !formData.message) {
@@ -23,8 +23,33 @@ const Contact = () => {
       return;
     }
 
-    toast.success("Vielen Dank! Wir melden uns schnellstmöglich bei Ihnen.");
-    setFormData({ name: "", email: "", phone: "", message: "" });
+    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+    console.log("Sending contact form to:", `${supabaseUrl}/functions/v1/send-contact`);
+    console.log("Form data:", formData);
+
+    try {
+      const response = await fetch(`${supabaseUrl}/functions/v1/send-contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      console.log("Response status:", response.status);
+      const responseData = await response.text();
+      console.log("Response data:", responseData);
+
+      if (!response.ok) {
+        throw new Error(`Fehler beim Senden der Nachricht: ${responseData}`);
+      }
+
+      toast.success("Vielen Dank! Ihre Anfrage wurde gesendet.");
+      setFormData({ name: "", email: "", phone: "", message: "" });
+    } catch (error) {
+      console.error("Error sending contact form:", error);
+      toast.error("Fehler beim Senden. Bitte versuchen Sie es später erneut.");
+    }
   };
 
   return (
