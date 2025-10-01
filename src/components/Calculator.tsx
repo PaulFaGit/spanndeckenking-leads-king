@@ -26,13 +26,14 @@ const Calculator = ({ open, onOpenChange }: CalculatorProps) => {
       return;
     }
 
-    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || window.location.origin;
     const offerData = { roomSize, lighting, email };
-    console.log("Sending offer request to:", `${supabaseUrl}/functions/v1/send-offer`);
+    const functionUrl = `${supabaseUrl}/functions/v1/send-offer`;
+    console.log("Sending offer request to:", functionUrl);
     console.log("Offer data:", offerData);
 
     try {
-      const response = await fetch(`${supabaseUrl}/functions/v1/send-offer`, {
+      const response = await fetch(functionUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

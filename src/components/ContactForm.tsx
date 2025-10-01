@@ -28,12 +28,13 @@ const ContactForm = ({ open, onOpenChange }: ContactFormProps) => {
       return;
     }
 
-    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-    console.log("Sending contact form to:", `${supabaseUrl}/functions/v1/send-contact`);
+    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || window.location.origin;
+    const functionUrl = `${supabaseUrl}/functions/v1/send-contact`;
+    console.log("Sending contact form to:", functionUrl);
     console.log("Form data:", formData);
 
     try {
-      const response = await fetch(`${supabaseUrl}/functions/v1/send-contact`, {
+      const response = await fetch(functionUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
