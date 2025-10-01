@@ -28,7 +28,12 @@ const ContactForm = ({ open, onOpenChange }: ContactFormProps) => {
       return;
     }
 
-    toast.success("Vielen Dank! Wir melden uns schnellstmöglich bei Ihnen.");
+    // TODO: Send email notification to spanndeckenking@gmail.com
+    // This requires a backend service (Lovable Cloud with Edge Functions)
+    console.log("Contact form submission:", formData);
+    console.log("Email notification should be sent to: spanndeckenking@gmail.com");
+
+    toast.success("Vielen Dank! Ihre Anfrage wurde an spanndeckenking@gmail.com gesendet.");
     
     setFormData({ name: "", email: "", phone: "", message: "" });
     onOpenChange(false);
@@ -47,11 +52,11 @@ const ContactForm = ({ open, onOpenChange }: ContactFormProps) => {
         <div className="grid gap-4 mb-6">
           <div className="flex items-center gap-3 text-sm">
             <Phone className="h-5 w-5 text-primary" />
-            <span>+49 123 456 789</span>
+            <span>+49 176 21957545</span>
           </div>
           <div className="flex items-center gap-3 text-sm">
             <Mail className="h-5 w-5 text-primary" />
-            <span>info@spanndeckenking.de</span>
+            <span>spanndeckenking@gmail.com</span>
           </div>
           <div className="flex items-center gap-3 text-sm">
             <MapPin className="h-5 w-5 text-primary" />

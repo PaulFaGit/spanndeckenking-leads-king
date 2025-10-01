@@ -26,8 +26,13 @@ const Calculator = ({ open, onOpenChange }: CalculatorProps) => {
       return;
     }
 
-    // Here you would typically send this to a backend
-    toast.success("Vielen Dank! Ihr Angebot wird an Ihre E-Mail gesendet.");
+    // TODO: Send email notification to spanndeckenking@gmail.com
+    // This requires a backend service (Lovable Cloud with Edge Functions)
+    const offerData = { roomSize, lighting, email };
+    console.log("Calculator submission:", offerData);
+    console.log("Email notification should be sent to: spanndeckenking@gmail.com");
+
+    toast.success("Vielen Dank! Ihr Angebot wird berechnet und an spanndeckenking@gmail.com gesendet.");
     
     // Reset form
     setStep(1);

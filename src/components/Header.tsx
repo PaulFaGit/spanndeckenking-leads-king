@@ -72,7 +72,7 @@ const Header = ({ onCalculatorOpen }: HeaderProps) => {
             <Button
               variant="outline"
               size="sm"
-              onClick={() => window.location.href = "tel:+49123456789"}
+              onClick={() => window.location.href = "tel:+4917621957545"}
               className="border-primary/30 hover:border-primary"
             >
               <Phone className="h-4 w-4 mr-2" />

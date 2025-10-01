@@ -13,6 +13,10 @@ import gallery3 from "@/assets/gallery-3.jpg";
 import gallery4 from "@/assets/gallery-4.jpg";
 import gallery5 from "@/assets/gallery-5.jpg";
 import gallery6 from "@/assets/gallery-6.jpg";
+import gallery7 from "@/assets/gallery-7.jpg";
+import gallery8 from "@/assets/gallery-8.jpg";
+import gallery9 from "@/assets/gallery-9.jpg";
+import gallery10 from "@/assets/gallery-10.jpg";
 
 const projects = [
   {
@@ -21,29 +25,49 @@ const projects = [
     image: gallery1,
   },
   {
-    title: "Elegantes Schlafzimmer",
-    description: "Matte Spanndecke mit indirektem Licht",
+    title: "Elegantes Wohnzimmer",
+    description: "Hochglanz-Spanndecke mit LED-Beleuchtung",
     image: gallery2,
   },
   {
-    title: "Luxuriöses Badezimmer",
-    description: "Feuchtraumgeeignete Hochglanz-Spanndecke",
+    title: "Luxuriöse Küche",
+    description: "Hochglanz-Spanndecke mit LED-Spots",
     image: gallery3,
   },
   {
-    title: "Geräumige Küche",
-    description: "Praktische Spanndecke mit LED-Panels",
+    title: "Exklusives Design",
+    description: "Hochglanz-Spanndecke mit integrierter Beleuchtung",
     image: gallery4,
   },
   {
-    title: "Professionelles Büro",
-    description: "Akustik-Spanndecke mit Beleuchtung",
+    title: "Kreative Wandgestaltung",
+    description: "Spanndecke mit bedruckten Wänden",
     image: gallery5,
   },
   {
-    title: "Stilvolles Esszimmer",
-    description: "Design-Spanndecke mit LED-Spots",
+    title: "Gemütliches Schlafzimmer",
+    description: "Matte Spanndecke mit Akzentbeleuchtung",
     image: gallery6,
+  },
+  {
+    title: "Modernes Büro",
+    description: "Spanndecke mit LED-Beleuchtung",
+    image: gallery7,
+  },
+  {
+    title: "Eleganter Festsaal",
+    description: "Hochglanz-Spanndecke mit LED-Linien",
+    image: gallery8,
+  },
+  {
+    title: "Stylischer Friseursalon",
+    description: "Spiegelglanz-Spanndecke",
+    image: gallery9,
+  },
+  {
+    title: "Luxuriöses Badezimmer",
+    description: "Feuchtraumgeeignete Spanndecke mit LED",
+    image: gallery10,
   },
 ];
 

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 const FloatingPhoneButton = () => {
   const handleCall = () => {
-    window.location.href = "tel:+49123456789";
+    window.location.href = "tel:+4917621957545";
   };
 
   return (
