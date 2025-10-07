@@ -9,7 +9,7 @@ const reasons = [
   },
   {
     icon: Users,
-    title: "Über 2000 zufriedene Kunden",
+    title: "Hunderte zufriedene Kunden",
     description: "Unsere Arbeit spricht für sich - zahlreiche erfolgreiche Projekte deutschlandweit.",
   },
   {

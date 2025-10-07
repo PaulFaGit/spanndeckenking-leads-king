@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { toast } from "sonner";
@@ -17,6 +18,7 @@ const Calculator = ({ open, onOpenChange }: CalculatorProps) => {
   const [roomSize, setRoomSize] = useState("");
   const [lighting, setLighting] = useState("");
   const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,7 +29,7 @@ const Calculator = ({ open, onOpenChange }: CalculatorProps) => {
     }
 
     const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || window.location.origin;
-    const offerData = { roomSize, lighting, email };
+    const offerData = { roomSize, lighting, email, message };
     const functionUrl = `${supabaseUrl}/functions/v1/send-offer`;
     console.log("Sending offer request to:", functionUrl);
     console.log("Offer data:", offerData);
@@ -68,6 +70,7 @@ const Calculator = ({ open, onOpenChange }: CalculatorProps) => {
       setRoomSize("");
       setLighting("");
       setEmail("");
+      setMessage("");
       onOpenChange(false);
     } catch (error: any) {
       console.error("Error sending offer request:", error);
@@ -138,19 +141,19 @@ const Calculator = ({ open, onOpenChange }: CalculatorProps) => {
                 <div className="flex items-center space-x-3 border border-border rounded-lg p-4 hover:border-primary transition-colors cursor-pointer">
                   <RadioGroupItem value="spots" id="spots" />
                   <Label htmlFor="spots" className="cursor-pointer flex-1">
-                    LED Spots (empfohlen)
-                  </Label>
-                </div>
-                <div className="flex items-center space-x-3 border border-border rounded-lg p-4 hover:border-primary transition-colors cursor-pointer">
-                  <RadioGroupItem value="panels" id="panels" />
-                  <Label htmlFor="panels" className="cursor-pointer flex-1">
-                    LED Panels
+                    LED Spots
                   </Label>
                 </div>
                 <div className="flex items-center space-x-3 border border-border rounded-lg p-4 hover:border-primary transition-colors cursor-pointer">
                   <RadioGroupItem value="strips" id="strips" />
                   <Label htmlFor="strips" className="cursor-pointer flex-1">
                     LED Strips (indirekte Beleuchtung)
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-3 border border-border rounded-lg p-4 hover:border-primary transition-colors cursor-pointer">
+                  <RadioGroupItem value="hanging" id="hanging" />
+                  <Label htmlFor="hanging" className="cursor-pointer flex-1">
+                    Hängelampe
                   </Label>
                 </div>
                 <div className="flex items-center space-x-3 border border-border rounded-lg p-4 hover:border-primary transition-colors cursor-pointer">
@@ -189,7 +192,7 @@ const Calculator = ({ open, onOpenChange }: CalculatorProps) => {
                 <h4 className="font-semibold mb-2 text-foreground">Ihre Auswahl:</h4>
                 <ul className="space-y-1 text-muted-foreground">
                   <li>• Raumgröße: {roomSize} m²</li>
-                  <li>• Beleuchtung: {lighting === "spots" ? "LED Spots" : lighting === "panels" ? "LED Panels" : lighting === "strips" ? "LED Strips" : "Keine"}</li>
+                  <li>• Beleuchtung: {lighting === "spots" ? "LED Spots" : lighting === "strips" ? "LED Strips (indirekte Beleuchtung)" : lighting === "hanging" ? "Hängelampe" : "Keine"}</li>
                 </ul>
               </div>
               
@@ -204,6 +207,17 @@ const Calculator = ({ open, onOpenChange }: CalculatorProps) => {
                 onChange={(e) => setEmail(e.target.value)}
                 className="text-lg p-6"
                 required
+              />
+
+              <Label htmlFor="message" className="text-lg mt-4">
+                Spezielle Wünsche? Gerne eine Nachricht hinterlassen (optional)
+              </Label>
+              <Textarea
+                id="message"
+                placeholder="Ihre Nachricht..."
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                className="text-lg p-4 min-h-[100px]"
               />
               
               <div className="flex gap-3">

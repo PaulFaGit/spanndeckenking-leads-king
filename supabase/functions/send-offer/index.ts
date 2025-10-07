@@ -12,6 +12,7 @@ interface OfferRequest {
   roomSize: string;
   lighting: string;
   email: string;
+  message?: string;
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -20,11 +21,11 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { roomSize, lighting, email }: OfferRequest = await req.json();
+    const { roomSize, lighting, email, message }: OfferRequest = await req.json();
 
     const lightingText = lighting === "spots" ? "LED Spots" : 
-                        lighting === "panels" ? "LED Panels" : 
                         lighting === "strips" ? "LED Strips (indirekte Beleuchtung)" : 
+                        lighting === "hanging" ? "Hängelampe" : 
                         "Keine Beleuchtung";
 
     console.log("Sending offer request to spanndeckenking@gmail.com", { roomSize, lighting, email });
@@ -38,6 +39,7 @@ const handler = async (req: Request): Promise<Response> => {
         <p><strong>Raumgröße:</strong> ${roomSize} m²</p>
         <p><strong>Beleuchtung:</strong> ${lightingText}</p>
         <p><strong>Kunden-E-Mail:</strong> ${email}</p>
+        ${message ? `<p><strong>Nachricht:</strong> ${message}</p>` : ''}
         <hr>
         <p><em>Bitte senden Sie dem Kunden ein persönliches Angebot an: ${email}</em></p>
       `,

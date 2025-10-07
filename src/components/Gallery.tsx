@@ -7,67 +7,61 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import gallery1 from "@/assets/gallery-1.jpg";
-import gallery2 from "@/assets/gallery-2.jpg";
-import gallery3 from "@/assets/gallery-3.jpg";
-import gallery4 from "@/assets/gallery-4.jpg";
-import gallery5 from "@/assets/gallery-5.jpg";
-import gallery6 from "@/assets/gallery-6.jpg";
-import gallery7 from "@/assets/gallery-7.jpg";
-import gallery8 from "@/assets/gallery-8.jpg";
-import gallery9 from "@/assets/gallery-9.jpg";
-import gallery10 from "@/assets/gallery-10.jpg";
+import gallery1 from "@/assets/gallery-new-1.jpg";
+import gallery2 from "@/assets/gallery-new-2.jpg";
+import gallery3 from "@/assets/gallery-new-3.jpg";
+import gallery4 from "@/assets/gallery-new-4.jpg";
+import gallery5 from "@/assets/gallery-new-5.jpg";
+import gallery6 from "@/assets/gallery-new-6.jpg";
+import gallery7 from "@/assets/gallery-new-7.jpg";
+import gallery8 from "@/assets/gallery-new-8.jpg";
+import gallery9 from "@/assets/gallery-new-9.jpg";
 
 const projects = [
   {
-    title: "Modernes Wohnzimmer",
-    description: "Spanndecke mit integrierter LED-Beleuchtung",
+    title: "Moderne Gestaltung",
+    description: "Hochglanz-Spanndecke mit LED-Beleuchtung",
     image: gallery1,
   },
   {
-    title: "Elegantes Wohnzimmer",
-    description: "Hochglanz-Spanndecke mit LED-Beleuchtung",
+    title: "Kreative Deckengestaltung",
+    description: "Bedruckte Spanndecke mit individuellen Motiven",
     image: gallery2,
   },
   {
-    title: "Luxuriöse Küche",
-    description: "Hochglanz-Spanndecke mit LED-Spots",
+    title: "Elegantes Wohnzimmer",
+    description: "Langlebige Decke mit indirekter Beleuchtung",
     image: gallery3,
   },
   {
-    title: "Exklusives Design",
-    description: "Hochglanz-Spanndecke mit integrierter Beleuchtung",
+    title: "Stilvolles Design",
+    description: "Spanndecke mit LED-Stripes",
     image: gallery4,
   },
   {
-    title: "Kreative Wandgestaltung",
-    description: "Spanndecke mit bedruckten Wänden",
+    title: "Professionelle Ausführung",
+    description: "Hochglanz-Decke mit integrierten Spots und Strips",
     image: gallery5,
   },
   {
-    title: "Gemütliches Schlafzimmer",
-    description: "Matte Spanndecke mit Akzentbeleuchtung",
+    title: "Zeitloses Design",
+    description: "Spanndecke mit LED-Spots und indirekter Beleuchtung",
     image: gallery6,
   },
   {
-    title: "Modernes Büro",
-    description: "Spanndecke mit LED-Beleuchtung",
+    title: "Moderne Gestaltung",
+    description: "Hochglanz-Spanndecke im modernen Stil",
     image: gallery7,
   },
   {
-    title: "Eleganter Festsaal",
-    description: "Hochglanz-Spanndecke mit LED-Linien",
+    title: "Elegante Lösungen",
+    description: "Hochglanz-Spanndecke mit Kristallleuchter",
     image: gallery8,
   },
   {
-    title: "Stylischer Friseursalon",
-    description: "Spiegelglanz-Spanndecke",
+    title: "Stilvolle Deckengestaltung",
+    description: "Spanndecke mit integrierter Hängelampe",
     image: gallery9,
-  },
-  {
-    title: "Luxuriöses Badezimmer",
-    description: "Feuchtraumgeeignete Spanndecke mit LED",
-    image: gallery10,
   },
 ];
 

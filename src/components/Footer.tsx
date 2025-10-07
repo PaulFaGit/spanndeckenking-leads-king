@@ -25,7 +25,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-primary" />
-                <span>Musterstraße 123, 12345 Musterstadt</span>
+                <span>Haus-Berge-Str. 111, 45356 Essen</span>
               </div>
             </div>
           </div>
@@ -50,6 +50,25 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-border mt-8 pt-8 text-center text-sm text-muted-foreground">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
+            <a 
+              href="https://spanndeckenking.de/impressum-datenschutz/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-primary transition-colors"
+            >
+              Impressum
+            </a>
+            <span className="hidden sm:inline">|</span>
+            <a 
+              href="https://spanndeckenking.de/impressum-datenschutz/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-primary transition-colors"
+            >
+              Datenschutz
+            </a>
+          </div>
           <p>&copy; {new Date().getFullYear()} Spanndeckenking. Alle Rechte vorbehalten.</p>
         </div>
       </div>
