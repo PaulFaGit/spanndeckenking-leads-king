@@ -1,5 +1,1 @@
-[functions.send-contact]
-verify_jwt = false
-
-[functions.send-offer]
-verify_jwt = false
+project_id = "xjqebqhbhxevmzvhcfmr"
