@@ -42,11 +42,23 @@ const Calculator = ({ open, onOpenChange }: CalculatorProps) => {
       });
 
       console.log("Response status:", response.status);
-      const responseData = await response.text();
+      const responseData = await response.json();
       console.log("Response data:", responseData);
 
       if (!response.ok) {
-        throw new Error(`Fehler beim Senden der Anfrage: ${responseData}`);
+        // Check for specific Resend errors
+        if (responseData.error && responseData.error.includes("verify a domain")) {
+          toast.error("⚠️ Resend-Konfiguration erforderlich: Domain muss verifiziert werden.", {
+            description: "Bitte verifizieren Sie Ihre Domain bei resend.com/domains"
+          });
+          return;
+        } else if (response.status === 403) {
+          toast.error("🔒 Email-Service-Fehler", {
+            description: "Die Email-Konfiguration ist nicht vollständig. Kontaktieren Sie den Administrator."
+          });
+          return;
+        }
+        throw new Error(`Fehler beim Senden der Anfrage: ${JSON.stringify(responseData)}`);
       }
 
       toast.success("Vielen Dank! Ihr Angebot wird berechnet und Ihnen zugesendet.");
@@ -57,9 +69,11 @@ const Calculator = ({ open, onOpenChange }: CalculatorProps) => {
       setLighting("");
       setEmail("");
       onOpenChange(false);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error sending offer request:", error);
-      toast.error("Fehler beim Senden. Bitte versuchen Sie es später erneut.");
+      toast.error("❌ Fehler beim Senden", {
+        description: "Bitte versuchen Sie es später erneut oder kontaktieren Sie uns telefonisch."
+      });
     }
   };
 
