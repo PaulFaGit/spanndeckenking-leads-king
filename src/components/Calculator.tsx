@@ -91,7 +91,7 @@ const Calculator = ({ open, onOpenChange }: CalculatorProps) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[600px] glass-card">
+      <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto glass-card">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-2xl">
             <CalcIcon className="h-6 w-6 text-primary" />
@@ -197,98 +197,108 @@ const Calculator = ({ open, onOpenChange }: CalculatorProps) => {
           )}
 
           {step === 3 && (
-            <div className="space-y-4 animate-fade-in">
-              <div className="bg-primary/10 border border-primary/20 rounded-lg p-4 mb-6">
-                <h4 className="font-semibold mb-2 text-foreground">Ihre Auswahl:</h4>
-                <ul className="space-y-1 text-muted-foreground">
+            <div className="space-y-3 animate-fade-in">
+              <div className="bg-primary/10 border border-primary/20 rounded-lg p-3 mb-4">
+                <h4 className="font-semibold mb-2 text-foreground text-sm">Ihre Auswahl:</h4>
+                <ul className="space-y-1 text-sm text-muted-foreground">
                   <li>• Raumgröße: {roomSize} m²</li>
                   <li>• Beleuchtung: {lighting === "spots" ? "LED Spots" : lighting === "strips" ? "LED Strips (indirekte Beleuchtung)" : lighting === "hanging" ? "Hängelampe" : "Keine Beleuchtung"}</li>
                 </ul>
               </div>
 
-              <p className="text-center text-lg font-semibold text-primary mb-4">
+              <p className="text-center text-base font-semibold text-primary mb-3">
                 Jetzt Daten hinterlassen und Preis erhalten
               </p>
               
-              <Label htmlFor="name" className="text-lg">
-                Name *
-              </Label>
-              <Input
-                id="name"
-                type="text"
-                placeholder="Ihr Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="text-lg p-6"
-                required
-              />
+              <div className="space-y-2">
+                <Label htmlFor="name" className="text-sm">
+                  Name *
+                </Label>
+                <Input
+                  id="name"
+                  type="text"
+                  placeholder="Ihr Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="text-base p-4"
+                  required
+                />
+              </div>
 
-              <Label htmlFor="email" className="text-lg">
-                E-Mail *
-              </Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="ihre@email.de"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="text-lg p-6"
-                required
-              />
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-sm">
+                  E-Mail *
+                </Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="ihre@email.de"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="text-base p-4"
+                  required
+                />
+              </div>
 
-              <Label htmlFor="phone" className="text-lg">
-                Telefon *
-              </Label>
-              <Input
-                id="phone"
-                type="tel"
-                placeholder="0176 21957545"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                className="text-lg p-6"
-                required
-              />
+              <div className="space-y-2">
+                <Label htmlFor="phone" className="text-sm">
+                  Telefon *
+                </Label>
+                <Input
+                  id="phone"
+                  type="tel"
+                  placeholder="0176 21957545"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  className="text-base p-4"
+                  required
+                />
+              </div>
 
-              <Label htmlFor="postalCode" className="text-lg">
-                PLZ *
-              </Label>
-              <Input
-                id="postalCode"
-                type="text"
-                placeholder="45356"
-                value={postalCode}
-                onChange={(e) => setPostalCode(e.target.value)}
-                className="text-lg p-6"
-                required
-              />
+              <div className="space-y-2">
+                <Label htmlFor="postalCode" className="text-sm">
+                  PLZ *
+                </Label>
+                <Input
+                  id="postalCode"
+                  type="text"
+                  placeholder="45356"
+                  value={postalCode}
+                  onChange={(e) => setPostalCode(e.target.value)}
+                  className="text-base p-4"
+                  required
+                />
+              </div>
 
-              <Label htmlFor="message" className="text-lg mt-4">
-                Spezielle Wünsche? Gerne eine Nachricht hinterlassen (optional)
-              </Label>
-              <Textarea
-                id="message"
-                placeholder="Ihre Nachricht..."
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                className="text-lg p-4 min-h-[100px]"
-              />
+              <div className="space-y-2">
+                <Label htmlFor="message" className="text-sm">
+                  Spezielle Wünsche? (optional)
+                </Label>
+                <Textarea
+                  id="message"
+                  placeholder="Ihre Nachricht..."
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  className="text-base p-3 min-h-[80px]"
+                />
+              </div>
               
-              <div className="flex gap-3">
+              <div className="flex gap-3 pt-2">
                 <Button
                   type="button"
                   variant="outline"
                   onClick={() => setStep(2)}
-                  className="flex-1 text-lg py-6"
+                  className="flex-1 text-base py-5"
                 >
-                  <ArrowLeft className="mr-2 h-5 w-5" />
+                  <ArrowLeft className="mr-2 h-4 w-4" />
                   Zurück
                 </Button>
                 <Button
                   type="submit"
-                  className="flex-1 bg-primary hover:bg-primary/90 text-lg py-6 glow-effect"
+                  className="flex-1 bg-primary hover:bg-primary/90 text-base py-5 glow-effect"
                 >
                   Angebot anfordern
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </div>
             </div>
