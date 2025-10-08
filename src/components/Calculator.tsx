@@ -91,13 +91,13 @@ const Calculator = ({ open, onOpenChange }: CalculatorProps) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto glass-card">
+      <DialogContent className="sm:max-w-[700px] glass-card">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-2xl">
-            <CalcIcon className="h-6 w-6 text-primary" />
+          <DialogTitle className="flex items-center gap-2 text-xl">
+            <CalcIcon className="h-5 w-5 text-primary" />
             Angebotsrechner
           </DialogTitle>
-          <DialogDescription>
+          <DialogDescription className="text-sm">
             In 3 Schritten zu Ihrem persönlichen Angebot
           </DialogDescription>
         </DialogHeader>
@@ -113,10 +113,10 @@ const Calculator = ({ open, onOpenChange }: CalculatorProps) => {
           ))}
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-4">
           {step === 1 && (
-            <div className="space-y-4 animate-fade-in">
-              <Label htmlFor="roomSize" className="text-lg">
+            <div className="space-y-3 animate-fade-in">
+              <Label htmlFor="roomSize" className="text-base">
                 Wie groß ist Ihr Raum? (in m²)
               </Label>
               <Input
@@ -126,71 +126,71 @@ const Calculator = ({ open, onOpenChange }: CalculatorProps) => {
                 value={roomSize}
                 onChange={(e) => setRoomSize(e.target.value)}
                 min="1"
-                className="text-lg p-6"
+                className="text-base p-4"
               />
               <Button
                 type="button"
                 onClick={() => setStep(2)}
                 disabled={!canProceedStep1}
-                className="w-full bg-primary hover:bg-primary/90 text-lg py-6"
+                className="w-full bg-primary hover:bg-primary/90 text-base py-5"
               >
                 Weiter
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
           )}
 
           {step === 2 && (
-            <div className="space-y-4 animate-fade-in">
-              <Label className="text-lg">Welche Beleuchtung wünschen Sie?</Label>
-              <RadioGroup value={lighting} onValueChange={setLighting} className="space-y-3">
+            <div className="space-y-3 animate-fade-in">
+              <Label className="text-base">Welche Beleuchtung wünschen Sie?</Label>
+              <RadioGroup value={lighting} onValueChange={setLighting} className="space-y-2">
                 <Label 
                   htmlFor="spots" 
-                  className="flex items-center space-x-3 border border-border rounded-lg p-4 hover:border-primary transition-colors cursor-pointer"
+                  className="flex items-center space-x-3 border border-border rounded-lg p-3 hover:border-primary transition-colors cursor-pointer"
                 >
                   <RadioGroupItem value="spots" id="spots" />
-                  <span className="flex-1">LED Spots</span>
+                  <span className="flex-1 text-sm">LED Spots</span>
                 </Label>
                 <Label 
                   htmlFor="strips" 
-                  className="flex items-center space-x-3 border border-border rounded-lg p-4 hover:border-primary transition-colors cursor-pointer"
+                  className="flex items-center space-x-3 border border-border rounded-lg p-3 hover:border-primary transition-colors cursor-pointer"
                 >
                   <RadioGroupItem value="strips" id="strips" />
-                  <span className="flex-1">LED Strips (indirekte Beleuchtung)</span>
+                  <span className="flex-1 text-sm">LED Strips (indirekte Beleuchtung)</span>
                 </Label>
                 <Label 
                   htmlFor="hanging" 
-                  className="flex items-center space-x-3 border border-border rounded-lg p-4 hover:border-primary transition-colors cursor-pointer"
+                  className="flex items-center space-x-3 border border-border rounded-lg p-3 hover:border-primary transition-colors cursor-pointer"
                 >
                   <RadioGroupItem value="hanging" id="hanging" />
-                  <span className="flex-1">Hängelampe</span>
+                  <span className="flex-1 text-sm">Hängelampe</span>
                 </Label>
                 <Label 
                   htmlFor="none" 
-                  className="flex items-center space-x-3 border border-border rounded-lg p-4 hover:border-primary transition-colors cursor-pointer"
+                  className="flex items-center space-x-3 border border-border rounded-lg p-3 hover:border-primary transition-colors cursor-pointer"
                 >
                   <RadioGroupItem value="none" id="none" />
-                  <span className="flex-1">Keine Beleuchtung</span>
+                  <span className="flex-1 text-sm">Keine Beleuchtung</span>
                 </Label>
               </RadioGroup>
-              <div className="flex gap-3">
+              <div className="flex gap-3 pt-1">
                 <Button
                   type="button"
                   variant="outline"
                   onClick={() => setStep(1)}
-                  className="flex-1 text-lg py-6"
+                  className="flex-1 text-base py-5"
                 >
-                  <ArrowLeft className="mr-2 h-5 w-5" />
+                  <ArrowLeft className="mr-2 h-4 w-4" />
                   Zurück
                 </Button>
                 <Button
                   type="button"
                   onClick={() => setStep(3)}
                   disabled={!canProceedStep2}
-                  className="flex-1 bg-primary hover:bg-primary/90 text-lg py-6"
+                  className="flex-1 bg-primary hover:bg-primary/90 text-base py-5"
                 >
                   Weiter
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </div>
             </div>
@@ -198,80 +198,79 @@ const Calculator = ({ open, onOpenChange }: CalculatorProps) => {
 
           {step === 3 && (
             <div className="space-y-3 animate-fade-in">
-              <div className="bg-primary/10 border border-primary/20 rounded-lg p-3 mb-4">
-                <h4 className="font-semibold mb-2 text-foreground text-sm">Ihre Auswahl:</h4>
-                <ul className="space-y-1 text-sm text-muted-foreground">
-                  <li>• Raumgröße: {roomSize} m²</li>
-                  <li>• Beleuchtung: {lighting === "spots" ? "LED Spots" : lighting === "strips" ? "LED Strips (indirekte Beleuchtung)" : lighting === "hanging" ? "Hängelampe" : "Keine Beleuchtung"}</li>
-                </ul>
+              <div className="bg-primary/10 border border-primary/20 rounded-lg p-3 mb-2">
+                <p className="font-semibold mb-1 text-foreground text-sm">Ihre Auswahl:</p>
+                <p className="text-xs text-muted-foreground">Raumgröße: {roomSize} m² • Beleuchtung: {lighting === "spots" ? "LED Spots" : lighting === "strips" ? "LED Strips" : lighting === "hanging" ? "Hängelampe" : "Keine Beleuchtung"}</p>
               </div>
 
-              <p className="text-center text-base font-semibold text-primary mb-3">
+              <p className="text-center text-sm font-semibold text-primary mb-2">
                 Jetzt Daten hinterlassen und Preis erhalten
               </p>
               
-              <div className="space-y-2">
-                <Label htmlFor="name" className="text-sm">
-                  Name *
-                </Label>
-                <Input
-                  id="name"
-                  type="text"
-                  placeholder="Ihr Name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="text-base p-4"
-                  required
-                />
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1">
+                  <Label htmlFor="name" className="text-xs">
+                    Name *
+                  </Label>
+                  <Input
+                    id="name"
+                    type="text"
+                    placeholder="Ihr Name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="text-sm p-3 h-10"
+                    required
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <Label htmlFor="email" className="text-xs">
+                    E-Mail *
+                  </Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="ihre@email.de"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="text-sm p-3 h-10"
+                    required
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <Label htmlFor="phone" className="text-xs">
+                    Telefon *
+                  </Label>
+                  <Input
+                    id="phone"
+                    type="tel"
+                    placeholder="0176 21957545"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    className="text-sm p-3 h-10"
+                    required
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <Label htmlFor="postalCode" className="text-xs">
+                    PLZ *
+                  </Label>
+                  <Input
+                    id="postalCode"
+                    type="text"
+                    placeholder="45356"
+                    value={postalCode}
+                    onChange={(e) => setPostalCode(e.target.value)}
+                    className="text-sm p-3 h-10"
+                    required
+                  />
+                </div>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="email" className="text-sm">
-                  E-Mail *
-                </Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="ihre@email.de"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="text-base p-4"
-                  required
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="phone" className="text-sm">
-                  Telefon *
-                </Label>
-                <Input
-                  id="phone"
-                  type="tel"
-                  placeholder="0176 21957545"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  className="text-base p-4"
-                  required
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="postalCode" className="text-sm">
-                  PLZ *
-                </Label>
-                <Input
-                  id="postalCode"
-                  type="text"
-                  placeholder="45356"
-                  value={postalCode}
-                  onChange={(e) => setPostalCode(e.target.value)}
-                  className="text-base p-4"
-                  required
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="message" className="text-sm">
+              <div className="space-y-1">
+                <Label htmlFor="message" className="text-xs">
                   Spezielle Wünsche? (optional)
                 </Label>
                 <Textarea
@@ -279,26 +278,26 @@ const Calculator = ({ open, onOpenChange }: CalculatorProps) => {
                   placeholder="Ihre Nachricht..."
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="text-base p-3 min-h-[80px]"
+                  className="text-sm p-2 min-h-[60px] resize-none"
                 />
               </div>
               
-              <div className="flex gap-3 pt-2">
+              <div className="flex gap-3 pt-1">
                 <Button
                   type="button"
                   variant="outline"
                   onClick={() => setStep(2)}
-                  className="flex-1 text-base py-5"
+                  className="flex-1 text-sm py-4"
                 >
-                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  <ArrowLeft className="mr-2 h-3.5 w-3.5" />
                   Zurück
                 </Button>
                 <Button
                   type="submit"
-                  className="flex-1 bg-primary hover:bg-primary/90 text-base py-5 glow-effect"
+                  className="flex-1 bg-primary hover:bg-primary/90 text-sm py-4 glow-effect"
                 >
                   Angebot anfordern
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  <ArrowRight className="ml-2 h-3.5 w-3.5" />
                 </Button>
               </div>
             </div>
