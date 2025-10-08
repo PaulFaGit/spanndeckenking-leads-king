@@ -90,8 +90,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1 text-foreground">Telefon</h4>
-                    <a href="tel:+49123456789" className="text-muted-foreground hover:text-primary transition-colors">
-                      +49 123 456 789
+                    <a href="tel:+4917621957545" className="text-muted-foreground hover:text-primary transition-colors">
+                      0176 21957545
                     </a>
                   </div>
                 </div>
@@ -115,8 +115,8 @@ const Contact = () => {
                   <div>
                     <h4 className="font-semibold mb-1 text-foreground">Adresse</h4>
                     <p className="text-muted-foreground">
-                      Musterstraße 123<br />
-                      12345 Musterstadt
+                      Haus-Berge-Str. 111<br />
+                      45356 Essen
                     </p>
                   </div>
                 </div>

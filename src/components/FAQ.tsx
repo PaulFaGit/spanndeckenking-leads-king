@@ -53,8 +53,8 @@ const FAQ = () => {
   return (
     <section id="faq" className="py-20 md:py-32 bg-muted/20">
       <div className="container px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in">
-          <h2 className="mb-4 gradient-text">Häufig gestellte Fragen</h2>
+        <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in pb-4">
+          <h2 className="mb-4 gradient-text pb-2">Häufig gestellte Fragen</h2>
           <p className="text-xl text-muted-foreground">
             Hier finden Sie Antworten auf die wichtigsten Fragen rund um Spanndecken
           </p>

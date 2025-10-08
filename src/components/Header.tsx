@@ -30,8 +30,8 @@ const Header = ({ onCalculatorOpen }: HeaderProps) => {
 
   const menuItems = [
     { label: "Leistungen", id: "services" },
-    { label: "Galerie", id: "gallery" },
     { label: "Warum wir?", id: "why-us" },
+    { label: "Galerie", id: "gallery" },
     { label: "FAQ", id: "faq" },
     { label: "Kontakt", id: "contact" },
   ];

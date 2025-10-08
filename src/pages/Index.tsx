@@ -2,6 +2,7 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
+import ConsultationBanner from "@/components/ConsultationBanner";
 import WhyUs from "@/components/WhyUs";
 import Calculator from "@/components/Calculator";
 import Gallery from "@/components/Gallery";
@@ -23,6 +24,7 @@ const Index = () => {
         onContactOpen={() => setContactOpen(true)}
       />
       <Services />
+      <ConsultationBanner />
       <WhyUs />
       <Gallery />
       <FAQ />

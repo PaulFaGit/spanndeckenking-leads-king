@@ -86,15 +86,15 @@ const ContactForm = ({ open, onOpenChange }: ContactFormProps) => {
         <div className="grid gap-4 mb-6">
           <div className="flex items-center gap-3 text-sm">
             <Phone className="h-5 w-5 text-primary" />
-            <span>+49 176 21957545</span>
+            <span>0176 21957545</span>
           </div>
           <div className="flex items-center gap-3 text-sm">
             <Mail className="h-5 w-5 text-primary" />
-            <span>spanndeckenking@gmail.com</span>
+            <span>info@spanndeckenking.de</span>
           </div>
           <div className="flex items-center gap-3 text-sm">
             <MapPin className="h-5 w-5 text-primary" />
-            <span>Musterstraße 123, 12345 Musterstadt</span>
+            <span>Haus-Berge-Str. 111, 45356 Essen</span>
           </div>
         </div>
 

@@ -17,19 +17,22 @@ const Calculator = ({ open, onOpenChange }: CalculatorProps) => {
   const [step, setStep] = useState(1);
   const [roomSize, setRoomSize] = useState("");
   const [lighting, setLighting] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [postalCode, setPostalCode] = useState("");
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!email || !roomSize || !lighting) {
-      toast.error("Bitte füllen Sie alle Felder aus");
+    if (!email || !roomSize || !lighting || !name || !phone || !postalCode) {
+      toast.error("Bitte füllen Sie alle Pflichtfelder aus");
       return;
     }
 
     const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || window.location.origin;
-    const offerData = { roomSize, lighting, email, message };
+    const offerData = { roomSize, lighting, name, email, phone, postalCode, message };
     const functionUrl = `${supabaseUrl}/functions/v1/send-offer`;
     console.log("Sending offer request to:", functionUrl);
     console.log("Offer data:", offerData);
@@ -69,7 +72,10 @@ const Calculator = ({ open, onOpenChange }: CalculatorProps) => {
       setStep(1);
       setRoomSize("");
       setLighting("");
+      setName("");
       setEmail("");
+      setPhone("");
+      setPostalCode("");
       setMessage("");
       onOpenChange(false);
     } catch (error: any) {
@@ -138,30 +144,34 @@ const Calculator = ({ open, onOpenChange }: CalculatorProps) => {
             <div className="space-y-4 animate-fade-in">
               <Label className="text-lg">Welche Beleuchtung wünschen Sie?</Label>
               <RadioGroup value={lighting} onValueChange={setLighting} className="space-y-3">
-                <div className="flex items-center space-x-3 border border-border rounded-lg p-4 hover:border-primary transition-colors cursor-pointer">
+                <Label 
+                  htmlFor="spots" 
+                  className="flex items-center space-x-3 border border-border rounded-lg p-4 hover:border-primary transition-colors cursor-pointer"
+                >
                   <RadioGroupItem value="spots" id="spots" />
-                  <Label htmlFor="spots" className="cursor-pointer flex-1">
-                    LED Spots
-                  </Label>
-                </div>
-                <div className="flex items-center space-x-3 border border-border rounded-lg p-4 hover:border-primary transition-colors cursor-pointer">
+                  <span className="flex-1">LED Spots</span>
+                </Label>
+                <Label 
+                  htmlFor="strips" 
+                  className="flex items-center space-x-3 border border-border rounded-lg p-4 hover:border-primary transition-colors cursor-pointer"
+                >
                   <RadioGroupItem value="strips" id="strips" />
-                  <Label htmlFor="strips" className="cursor-pointer flex-1">
-                    LED Strips (indirekte Beleuchtung)
-                  </Label>
-                </div>
-                <div className="flex items-center space-x-3 border border-border rounded-lg p-4 hover:border-primary transition-colors cursor-pointer">
+                  <span className="flex-1">LED Strips (indirekte Beleuchtung)</span>
+                </Label>
+                <Label 
+                  htmlFor="hanging" 
+                  className="flex items-center space-x-3 border border-border rounded-lg p-4 hover:border-primary transition-colors cursor-pointer"
+                >
                   <RadioGroupItem value="hanging" id="hanging" />
-                  <Label htmlFor="hanging" className="cursor-pointer flex-1">
-                    Hängelampe
-                  </Label>
-                </div>
-                <div className="flex items-center space-x-3 border border-border rounded-lg p-4 hover:border-primary transition-colors cursor-pointer">
+                  <span className="flex-1">Hängelampe</span>
+                </Label>
+                <Label 
+                  htmlFor="none" 
+                  className="flex items-center space-x-3 border border-border rounded-lg p-4 hover:border-primary transition-colors cursor-pointer"
+                >
                   <RadioGroupItem value="none" id="none" />
-                  <Label htmlFor="none" className="cursor-pointer flex-1">
-                    Keine Beleuchtung
-                  </Label>
-                </div>
+                  <span className="flex-1">Keine Beleuchtung</span>
+                </Label>
               </RadioGroup>
               <div className="flex gap-3">
                 <Button
@@ -192,12 +202,29 @@ const Calculator = ({ open, onOpenChange }: CalculatorProps) => {
                 <h4 className="font-semibold mb-2 text-foreground">Ihre Auswahl:</h4>
                 <ul className="space-y-1 text-muted-foreground">
                   <li>• Raumgröße: {roomSize} m²</li>
-                  <li>• Beleuchtung: {lighting === "spots" ? "LED Spots" : lighting === "strips" ? "LED Strips (indirekte Beleuchtung)" : lighting === "hanging" ? "Hängelampe" : "Keine"}</li>
+                  <li>• Beleuchtung: {lighting === "spots" ? "LED Spots" : lighting === "strips" ? "LED Strips (indirekte Beleuchtung)" : lighting === "hanging" ? "Hängelampe" : "Keine Beleuchtung"}</li>
                 </ul>
               </div>
+
+              <p className="text-center text-lg font-semibold text-primary mb-4">
+                Jetzt Daten hinterlassen und Preis erhalten
+              </p>
               
+              <Label htmlFor="name" className="text-lg">
+                Name *
+              </Label>
+              <Input
+                id="name"
+                type="text"
+                placeholder="Ihr Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="text-lg p-6"
+                required
+              />
+
               <Label htmlFor="email" className="text-lg">
-                E-Mail für Ihr persönliches Angebot
+                E-Mail *
               </Label>
               <Input
                 id="email"
@@ -205,6 +232,32 @@ const Calculator = ({ open, onOpenChange }: CalculatorProps) => {
                 placeholder="ihre@email.de"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                className="text-lg p-6"
+                required
+              />
+
+              <Label htmlFor="phone" className="text-lg">
+                Telefon *
+              </Label>
+              <Input
+                id="phone"
+                type="tel"
+                placeholder="0176 21957545"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="text-lg p-6"
+                required
+              />
+
+              <Label htmlFor="postalCode" className="text-lg">
+                PLZ *
+              </Label>
+              <Input
+                id="postalCode"
+                type="text"
+                placeholder="45356"
+                value={postalCode}
+                onChange={(e) => setPostalCode(e.target.value)}
                 className="text-lg p-6"
                 required
               />

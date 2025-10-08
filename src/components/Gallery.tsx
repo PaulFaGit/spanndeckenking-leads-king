@@ -69,8 +69,8 @@ const Gallery = () => {
   return (
     <section id="gallery" className="py-20 md:py-32 bg-muted/20">
       <div className="container px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in">
-          <h2 className="mb-4 gradient-text">Unsere Projekte</h2>
+        <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in pb-4">
+          <h2 className="mb-4 gradient-text pb-2">Unsere Projekte</h2>
           <p className="text-xl text-muted-foreground">
             Entdecken Sie unsere realisierten Projekte und lassen Sie sich inspirieren
           </p>
